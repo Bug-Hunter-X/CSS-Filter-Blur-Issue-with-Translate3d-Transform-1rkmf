@@ -1,0 +1,34 @@
+/* solution.css */
+
+/* Workaround 1: Use will-change for better compositing */
+.blurred-element {
+  will-change: transform, filter;
+  filter: blur(5px);
+  transform: translate3d(10px, 10px, 0);
+}
+
+/* Workaround 2: Avoid translate3d where possible and use translate instead */
+.blurred-element-alternative {
+  filter: blur(5px);
+  transform: translate(10px, 10px);
+}
+
+/* Workaround 3 (if other workarounds fail): Use a separate element for the blur */
+.blurred-element-container {
+  position: relative;
+}
+
+.blurred-element-container .blurred-element {
+  position: absolute;
+  filter: blur(5px);
+  transform: translate3d(10px, 10px, 0);
+}
+
+.blurred-element-container .blurred-element-background {
+  position: absolute;
+  /* Match the background of the blurred element */
+  background-color: white; /*Replace with actual background color*/
+  /* Match the size of the blurred element */
+  width: 100px; /* Replace with actual width */
+  height: 50px; /*Replace with actual height */
+} 
